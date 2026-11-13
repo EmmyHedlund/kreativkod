@@ -1,110 +1,98 @@
-// Skriv gärna om kommentarerna med dina egna ord, uppgiften kräver det.
+// script.js: the dot grid itself (settings, data and the logic for how dots behave).
+// main.js loads after this file and uses the variables and functions below.
+// Remember to rewrite these comments in your own words.
 
-// Sätter årtalet i sidfoten
-document.getElementById("year").textContent = new Date().getFullYear();
+// ---------- Settings ----------
+const SPACING = 27;        // distance between dots in pixels
+const BASE_RADIUS = 1.6;   // size of a dot when nothing is happening
+const HOVER_RADIUS = 7;    // extra size right under the mouse
+const HOVER_RANGE = 150;   // how far from the mouse the dots react
+const EASING = 0.15;       // 0-1, lower = slower, smoother movement
+const RIPPLE_LIFE = 70;    // how many frames a click ring lasts
 
-// Färgerna som formerna slumpas ur
-let palette = [0xff3d6e, 0xf4d35e, 0x3a86ff, 0x7ae7c7, 0x9b5de5];
+// Colours to cycle through when a key is pressed
+const COLORS = [0x3347d6, 0xe63946, 0x2a9d8f, 0xf4a261, 0x000000];
+let colorIndex = 0;
 
-// Alla former som lever just nu
-const shapes = [];
-const MAX_SHAPES = 150; // tak så att sidan inte blir seg
+// Shape mode: 0 = circles, 1 = squares, 2 = mixed
+let shapeMode = 0;
 
-// Hjälpfunktion: slumptal mellan a och b
-function rand(a, b) {
-  return a + Math.random() * (b - a);
+// ---------- State ----------
+let dots = [];             // every dot: position, current size and a random seed
+const mouse = { x: 0, y: 0 };
+const ripples = [];        // active click waves
+
+// Build the grid, used at start and when the window is resized
+function buildGrid(width, height) {
+  dots = [];
+  for (let y = SPACING / 2; y < height; y += SPACING) {
+    for (let x = SPACING / 2; x < width; x += SPACING) {
+      dots.push({ x, y, size: BASE_RADIUS, seed: Math.random() });
+    }
+  }
 }
 
-// Hjälpfunktion: välj en slumpad färg ur paletten
-function randomColor() {
-  return palette[Math.floor(Math.random() * palette.length)];
+// Start a new ring that spreads out from a click
+function addRipple(x, y) {
+  ripples.push({ x, y, age: 0 });
 }
 
-async function start() {
-  const container = document.getElementById("pixi-container");
+// Change colour on a key press, and change shapes every second press
+function nextStyle() {
+  colorIndex = (colorIndex + 1) % COLORS.length;
+  if (colorIndex % 2 === 0) shapeMode = (shapeMode + 1) % 3;
+}
 
-  // Skapar Pixi-appen (i version 8 måste init anropas med await)
-  const app = new PIXI.Application();
-  await app.init({
-    resizeTo: container,   // canvasen följer containerns storlek
-    backgroundAlpha: 0,    // genomskinlig, bakgrunden styrs av CSS
-    antialias: true,
-  });
-  container.appendChild(app.canvas);
-
-  // Skapar en ny form vid position x, y
-  function spawn(x, y, big = false) {
-    if (shapes.length >= MAX_SHAPES) {
-      const old = shapes.shift(); // ta bort den äldsta
-      old.g.destroy();
-    }
-
-    const g = new PIXI.Graphics();
-    const size = big ? rand(30, 80) : rand(8, 30);
-    const color = randomColor();
-
-    // Slumpar mellan cirkel, ring och fyrkant
-    const kind = Math.floor(rand(0, 3));
-    if (kind === 0) {
-      g.circle(0, 0, size).fill({ color, alpha: 0.8 });
-    } else if (kind === 1) {
-      g.circle(0, 0, size).stroke({ color, width: 4 });
-    } else {
-      g.rect(-size, -size, size * 2, size * 2).fill({ color, alpha: 0.8 });
-    }
-
-    g.x = x;
-    g.y = y;
-    app.stage.addChild(g);
-
-    shapes.push({
-      g,
-      vx: rand(-1.5, 1.5),  // rörelse i sidled
-      vy: rand(-1.5, 1.5),  // rörelse i höjdled
-      spin: rand(-0.05, 0.05),
-      life: 1,              // går från 1 till 0, sen försvinner formen
-    });
+// Update every dot for one frame. dt = how much time has passed.
+// Returns the dots sorted by shape so they can be drawn efficiently.
+function updateDots(dt) {
+  // Age the ripples and remove the old ones
+  for (let i = ripples.length - 1; i >= 0; i--) {
+    ripples[i].age += dt;
+    if (ripples[i].age > RIPPLE_LIFE) ripples.splice(i, 1);
   }
 
-  // MUS: former följer efter muspekaren
-  app.canvas.addEventListener("pointermove", (e) => {
-    const r = app.canvas.getBoundingClientRect();
-    spawn(e.clientX - r.left, e.clientY - r.top);
-  });
+  const circles = [];
+  const squares = [];
 
-  // KLICK: en explosion av stora former
-  app.canvas.addEventListener("pointerdown", (e) => {
-    const r = app.canvas.getBoundingClientRect();
-    for (let i = 0; i < 15; i++) {
-      spawn(e.clientX - r.left, e.clientY - r.top, true);
+  for (const d of dots) {
+    // 1. Size from the mouse: biggest right under it, fading out with distance
+    const dx = d.x - mouse.x;
+    const dy = d.y - mouse.y;
+    const dist = Math.sqrt(dx * dx + dy * dy);
+    const t = Math.max(0, 1 - dist / HOVER_RANGE);
+    let target = BASE_RADIUS + HOVER_RADIUS * t * t * (3 - 2 * t); // smoothstep
+
+    // 2. Extra size from click ripples: a ring that moves outwards and fades
+    for (const r of ripples) {
+      const rx = d.x - r.x;
+      const ry = d.y - r.y;
+      const rd = Math.sqrt(rx * rx + ry * ry);
+      const ringRadius = r.age * 12;
+      const off = (rd - ringRadius) / 35;
+      target += 6 * Math.exp(-off * off) * (1 - r.age / RIPPLE_LIFE);
     }
-  });
 
-  // TANGENTBORD: en tangenttryckning byter palett och släpper formerna på slumpade platser
-  window.addEventListener("keydown", () => {
-    palette = Array.from({ length: 5 }, () => Math.floor(Math.random() * 0xffffff));
-    for (let i = 0; i < 10; i++) {
-      spawn(rand(0, app.screen.width), rand(0, app.screen.height), true);
+    // 3. Ease towards the target so it feels soft instead of jumping
+    d.size += (target - d.size) * Math.min(1, EASING * dt);
+
+    // 4. Pick shape, circles or squares (mixed mode uses each dot's random seed)
+    const useSquare = shapeMode === 1 || (shapeMode === 2 && d.seed > 0.5);
+    if (useSquare) {
+      squares.push(d);
+    } else {
+      circles.push(d);
     }
-  });
+  }
 
-  // Körs varje bildruta: flytta, rotera och tona ut formerna
-  app.ticker.add(() => {
-    for (let i = shapes.length - 1; i >= 0; i--) {
-      const s = shapes[i];
-      s.g.x += s.vx;
-      s.g.y += s.vy;
-      s.g.rotation += s.spin;
-      s.life -= 0.01;
-      s.g.alpha = Math.max(s.life, 0);
-      s.g.scale.set(0.5 + s.life * 0.5);
-
-      if (s.life <= 0) {
-        s.g.destroy();
-        shapes.splice(i, 1);
-      }
-    }
-  });
+  return { circles, squares };
 }
 
-start();
+// Draw the dots onto a PixiJS Graphics object
+function drawDots(g, circles, squares) {
+  g.clear();
+  for (const d of circles) g.circle(d.x, d.y, d.size);
+  g.fill(COLORS[colorIndex]);
+  for (const d of squares) g.rect(d.x - d.size, d.y - d.size, d.size * 2, d.size * 2);
+  g.fill(COLORS[colorIndex]);
+}

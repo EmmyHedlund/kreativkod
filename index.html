@@ -1,128 +1,52 @@
 <!DOCTYPE html>
-<html lang="sv">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Emmy Hedlund– Portfölj</title>
-  <meta name="description" content="Presentation av mig och mitt slutprojekt.">
+  <title>Emmy Hedlund</title>
+  <meta name="description" content="Portfolio of Emmy Hedlund and her final project for Algorave.">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- Toppmeny: sajtnamn till vänster, rullgardinsmenyer till höger -->
-  <header class="topbar" id="top">
-    <a class="logo" href="#top">Emmy Hedlund</a>
-    <nav class="menu" aria-label="Huvudmeny">
-      <ul>
-        <li class="has-sub">
-          <a href="#om">presentation</a>
-          <ul class="sub">
-            <li><a href="#om">Om mig</a></li>
-            <li><a href="#verktyg">Verktyg</a></li>
-          </ul>
-        </li>
-        <li class="has-sub">
-          <a href="#projekt">slutprojekt</a>
-          <ul class="sub">
-            <li><a href="#projekt">Idén</a></li>
-            <li><a href="#process">Process</a></li>
-          </ul>
-        </li>
-        <li><a href="#kontakt" class="contact-link">KONTAKT</a></li>
-      </ul>
-    </nav>
-  </header>
+  <!-- The PixiJS canvas is added here by script.js and sits behind the text -->
+  <div id="pixi-container" aria-hidden="true"></div>
 
   <main>
+    <h1>Emmy Hedlund</h1>
 
-    <!-- Hero: här ritas det generativa PixiJS-elementet -->
-    <section class="hero">
-      <div id="pixi-container" aria-hidden="true"></div>
-      <div class="hero-text">
-        <h1>Hej, jag är [Emmy Hedlund]</h1>
-        <p>Här presenterar jag mig själv och mitt slutprojekt för Algorave.</p>
-        <p class="hint">Flytta musen, klicka eller tryck på en tangent.</p>
-      </div>
-    </section>
+    <!-- Placeholder text, replace with real information after Algorave -->
+    <p class="intro">
+      Student in IT, media and design in Stockholm, working with creative coding
+      and generative visuals. This page presents me and my final project.
+    </p>
 
-    <!-- Slutprojektet: kort i ett rutnät -->
-    <section class="section" id="projekt">
-      <h2 class="section-title">Slutprojektet</h2>
+    <h2>Final project</h2>
+    <ul>
+      <li>[Project title], for Algorave (2026)</li>
+      <li>Placeholder: short description of the idea</li>
+      <li>Placeholder: tools and techniques</li>
+      <li>Placeholder: who I am making it with</li>
+    </ul>
 
-      <div class="grid">
-        <article class="card card-wide">
-          <div class="ph" style="--c1:#f4d35e; --c2:#ee964b"></div>
-          <h3>[Projektets titel]</h3>
-          <p>Platshållartext. Här beskriver jag min och min partners idé för
-             slutprojektet och vad besökaren kommer att uppleva på Algorave.</p>
-          <p class="years">2026</p>
-          <p class="tags">Generativ kod • Ljud • Visuellt</p>
-        </article>
+    <h2>Work</h2>
+    <ul>
+      <li>[Earlier project one], software (2026)</li>
+      <li>[Earlier project two], website (2025)</li>
+      <li>[Earlier project three], visuals (2025)</li>
+    </ul>
 
-        <article class="card">
-          <div class="ph" style="--c1:#7ae7c7; --c2:#3a86ff"></div>
-          <h3>Idén</h3>
-          <p>Platshållartext om grundidén och varför vi valde den.</p>
-          <p class="years">2026</p>
-          <p class="tags">Koncept • Skiss</p>
-        </article>
+    <h2>Contact</h2>
+    <ul>
+      <li><a href="mailto:emmyhedlund.2002@gmail.com">emmyhedlund.2002@gmail.com</a></li>
+      <li><a href="https://github.com/" target="_blank" rel="noopener">GitHub</a></li>
+    </ul>
 
-        <article class="card" id="process">
-          <div class="ph" style="--c1:#ff7aa2; --c2:#9b5de5"></div>
-          <h3>Processen</h3>
-          <p>Platshållartext om hur arbetet går till, från första experiment till färdigt verk.</p>
-          <p class="years">2026</p>
-          <p class="tags">Experiment • Test</p>
-        </article>
-
-        <!-- Textkort utan bild -->
-        <article class="card card-text">
-          <h3>Algorave</h3>
-          <p>Platshållartext om evenemanget där projektet visas upp.</p>
-        </article>
-
-        <article class="card">
-          <div class="ph" style="--c1:#ffd6a5; --c2:#ff6b6b"></div>
-          <h3>Samarbetet</h3>
-          <p>Platshållartext om mig och min partner och hur vi delar upp arbetet.</p>
-          <p class="years">2026</p>
-          <p class="tags">Teamwork • Planering</p>
-        </article>
-      </div>
-    </section>
-
-    <!-- Om mig -->
-    <section class="section two-col" id="om">
-      <div>
-        <h2 class="section-title">Om mig</h2>
-        <p>Platshållartext. Berätta kort vem du är, vad du studerar
-           (IT, medier och design) och vad du är nyfiken på.</p>
-      </div>
-      <div class="ph ph-portrait" style="--c1:#cdb4db; --c2:#a2d2ff" role="img" aria-label="Platshållare för porträttbild"></div>
-    </section>
-
-    <!-- Verktyg -->
-    <section class="section" id="verktyg">
-      <h2 class="section-title">Verktyg</h2>
-      <p class="tags big">HTML • CSS • JavaScript • PixiJS • GitHub Pages</p>
-    </section>
-
-    <!-- Kontakt -->
-    <section class="section" id="kontakt">
-      <h2 class="section-title">Kontakt</h2>
-      <p>E-post: <a href="mailto:namn@example.com">namn@example.com</a></p>
-      <p>GitHub: <a href="https://github.com/" target="_blank" rel="noopener">github.com/ditt-användarnamn</a></p>
-    </section>
-
+    <p class="hint">Move the mouse, click, or press any key.</p>
   </main>
 
-  <footer class="footer">
-    <a href="#top">↑ Till toppen</a>
-    <span>© <span id="year"></span> Ditt Namn</span>
-  </footer>
-
-  <!-- PixiJS från CDN (global variabel PIXI), sedan mitt eget skript -->
-  <script src="https://cdn.jsdelivr.net/npm/pixi.js@8/dist/pixi.min.js"></script>
+  <!-- PixiJS from a CDN, then my own script -->
+  <script src="https://cdn.jsdelivr.net/npm/pixi.js@8.6.6/dist/pixi.min.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
