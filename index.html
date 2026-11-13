@@ -3,25 +3,35 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Austin Franklin</title>
+  <title>Emmy Hedlund</title>
+  <!-- Kopplar ihop sidan med min CSS-fil -->
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <main>
-    <h1>Austin Franklin</h1>
-    <p>Composer and sound artist in Stockholm, working with algorithmic composition, generative music and machine learning.</p>
+    <!-- Presentation av mig -->
+    <h1>Emmy Hedlund</h1>
+    <p>Student on the IT, Media and Design programme at Södertörn University. I am interested in creative coding, interaction and generative visuals. (Placeholder text, I will update this later.)</p>
 
-    <h2>Work</h2>
+    <!-- Beskrivning av slutprojektet (platshållare tills efter Algoraven) -->
+    <h2>Final project</h2>
+    <p><strong>Project title:</strong> Coming soon</p>
+    <p>This is placeholder text. Here I will describe my final project for the Algorave: what it is, how it works and what I made together with my partner. I will replace this text with the real information after the event.</p>
+
+    <!-- Platshållarbild, byts ut mot en riktig bild från slutprojektet -->
+    <img src="placeholder.svg" alt="Placeholder image for my final project" width="480">
+
+    <h2>Try it</h2>
     <ul>
-      <li>Bloom, for cello and electronics (2021)</li>
-      <li>Four Idols, album (2020)</li>
-      <li>The Unfinder, software</li>
-      <li>Bounded, software</li>
-      <li>Lightmotif, game</li>
+      <li>Move the mouse: the dots grow around the cursor.</li>
+      <li>Click: a burst of colourful particles appears.</li>
+      <li>Press any key: the colour palette changes.</li>
     </ul>
   </main>
 
+  <!-- Pixi.js laddas från ett CDN (version 8) -->
   <script src="https://cdn.jsdelivr.net/npm/pixi.js@8.6.6/dist/pixi.min.js"></script>
+  <!-- Min egen JavaScript. type="module" behövs för await längst upp i filen -->
   <script type="module" src="main.js"></script>
 </body>
 </html>
