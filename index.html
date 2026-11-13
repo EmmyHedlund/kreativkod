@@ -10,8 +10,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;700&display=swap" rel="stylesheet">
-  <!-- Min CSS-fil ligger i mappen css -->
-  <link rel="stylesheet" href="css/style.css">
+  <!-- Min CSS-fil ligger i samma mapp som index.html -->
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <!-- Pixi ritar all generativ grafik i den här rutan, bakom resten av sidan -->
@@ -34,7 +34,7 @@
       <p><a class="contact" href="mailto:hello@example.com">Get in touch</a></p>
     </section>
 
-    <!-- Varje data-motif pekar på en ritfunktion i js/main.js -->
+    <!-- Varje data-motif pekar på en ritfunktion i main.js -->
     <section id="project" aria-label="Final project">
       <ul class="grid">
         <li class="tile">
@@ -97,6 +97,6 @@
   <!-- Laddar Pixi.js (version 8) från ett CDN -->
   <script src="https://cdn.jsdelivr.net/npm/pixi.js@8.6.6/dist/pixi.min.js"></script>
   <!-- Min JavaScript. type="module" behövs eftersom filen använder await -->
-  <script type="module" src="js/main.js"></script>
+  <script type="module" src="main.js"></script>
 </body>
 </html>
