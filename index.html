@@ -3,35 +3,100 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Emmy Hedlund</title>
-  <!-- Kopplar ihop sidan med min CSS-fil -->
-  <link rel="stylesheet" href="style.css">
+  <title>Emmy Hedlund :: creative coding</title>
+  <meta name="description" content="Emmy Hedlund: student in IT, Media and Design at Södertörn University, working with creative coding and generative visuals.">
+
+  <!-- Typsnitt från Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+  <!-- Min CSS-fil ligger i mappen css -->
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+  <!-- Pixi ritar all generativ grafik i den här rutan, bakom resten av sidan -->
+  <div id="stage" aria-hidden="true"></div>
+
+  <header class="top">
+    <a class="logo" href="./">emmy hedlund</a>
+    <nav aria-label="Main">
+      <a href="#project">project</a>
+      <a href="#about">about</a>
+    </nav>
+  </header>
+
   <main>
-    <!-- Presentation av mig -->
-    <h1>Emmy Hedlund</h1>
-    <p>Student on the IT, Media and Design programme at Södertörn University. I am interested in creative coding, interaction and generative visuals. (Placeholder text, I will update this later.)</p>
+    <section class="intro">
+      <h1>Emmy Hedlund</h1>
+      <p><strong>Based in Stockholm,</strong> I study IT, Media and Design at Södertörn University and I am interested in creative coding, interaction and generative visuals.</p>
+      <p>This page presents me and my final project for the Algorave. (Placeholder text: I will update it after the event.)</p>
+      <!-- Byt ut mot min riktiga e-postadress -->
+      <p><a class="contact" href="mailto:hello@example.com">Get in touch</a></p>
+    </section>
 
-    <!-- Beskrivning av slutprojektet (platshållare tills efter Algoraven) -->
-    <h2>Final project</h2>
-    <p><strong>Project title:</strong> Coming soon</p>
-    <p>This is placeholder text. Here I will describe my final project for the Algorave: what it is, how it works and what I made together with my partner. I will replace this text with the real information after the event.</p>
+    <!-- Varje data-motif pekar på en ritfunktion i js/main.js -->
+    <section id="project" aria-label="Final project">
+      <ul class="grid">
+        <li class="tile">
+          <div class="art" data-motif="bloom"></div>
+          <h2>concept</h2>
+          <p class="tags">placeholder / idea / goal</p>
+        </li>
+        <li class="tile">
+          <div class="art" data-motif="bars"></div>
+          <h2>visuals</h2>
+          <p class="tags">placeholder / colour / shape</p>
+        </li>
+        <li class="tile">
+          <div class="art" data-motif="scatter"></div>
+          <h2>code</h2>
+          <p class="tags">placeholder / javascript / generative</p>
+        </li>
+        <li class="tile">
+          <div class="art" data-motif="grid"></div>
+          <h2>sound</h2>
+          <p class="tags">placeholder / rhythm / live</p>
+        </li>
+        <li class="tile">
+          <div class="art" data-motif="rings"></div>
+          <h2>process</h2>
+          <p class="tags">placeholder / sketches / testing</p>
+        </li>
+        <li class="tile">
+          <div class="art" data-motif="links"></div>
+          <h2>algorave</h2>
+          <p class="tags">placeholder / performance / partner</p>
+        </li>
+      </ul>
+    </section>
 
-    <!-- Platshållarbild, byts ut mot en riktig bild från slutprojektet -->
-    <img src="placeholder.svg" alt="Placeholder image for my final project" width="480">
-
-    <h2>Try it</h2>
-    <ul>
-      <li>Move the mouse: the dots grow around the cursor.</li>
-      <li>Click: a burst of colourful particles appears.</li>
-      <li>Press any key: the colour palette changes.</li>
-    </ul>
+    <section id="about" class="about">
+      <h2>about</h2>
+      <div class="cols">
+        <div>
+          <h3>final project</h3>
+          <p><strong>Project title:</strong> coming soon.</p>
+          <p>This is placeholder text. Here I will describe what my final project is, how it works and what I made together with my partner. I will replace this text with the real description after the Algorave.</p>
+          <img src="placeholder.svg" alt="Placeholder image for my final project" width="480">
+        </div>
+        <div>
+          <h3>me</h3>
+          <p>Student on the IT, Media and Design programme at Södertörn University. (Placeholder: write a few sentences about yourself here.)</p>
+          <h3>this page</h3>
+          <p>Built with HTML, CSS and JavaScript, with the generative graphics drawn by PixiJS.</p>
+        </div>
+      </div>
+    </section>
   </main>
 
-  <!-- Pixi.js laddas från ett CDN (version 8) -->
+  <footer class="bottom">
+    <p>© 2026 Emmy Hedlund</p>
+    <p>move to push the dots, click to send a ripple, press a key to change colour</p>
+  </footer>
+
+  <!-- Laddar Pixi.js (version 8) från ett CDN -->
   <script src="https://cdn.jsdelivr.net/npm/pixi.js@8.6.6/dist/pixi.min.js"></script>
-  <!-- Min egen JavaScript. type="module" behövs för await längst upp i filen -->
-  <script type="module" src="main.js"></script>
+  <!-- Min JavaScript. type="module" behövs eftersom filen använder await -->
+  <script type="module" src="js/main.js"></script>
 </body>
 </html>
