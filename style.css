@@ -1,74 +1,17 @@
-/* Plain white page with black text, the dots are drawn by PixiJS behind it */
-html, body {
+body {
   margin: 0;
-  background: #ffffff;
-  color: #000000;
-  font-family: Helvetica, Arial, sans-serif;
+  font-family: sans-serif;
 }
 
-/* The canvas covers the whole window and stays fixed when scrolling */
-#pixi-container {
+/* The Pixi canvas sits behind the text */
+canvas {
   position: fixed;
-  inset: 0;
-  z-index: 0;
+  top: 0;
+  left: 0;
+  z-index: -1;
 }
 
-#pixi-container canvas {
-  display: block;
-}
-
-/* Text sits above the canvas. pointer-events: none lets the mouse
-   "go through" the text so the dots still react underneath it */
 main {
-  position: relative;
-  z-index: 1;
-  padding: 48px 22px 80px;
-  max-width: 640px;
-  pointer-events: none;
-}
-
-/* Links must still be clickable */
-main a {
-  pointer-events: auto;
-}
-
-h1 {
-  font-size: 3rem;
-  margin: 0 0 24px;
-  line-height: 1.1;
-}
-
-h2 {
-  font-size: 1.8rem;
-  margin: 28px 0 12px;
-}
-
-p, li {
-  font-size: 1.15rem;
-  line-height: 1.5;
-}
-
-.intro {
-  margin: 0;
-}
-
-ul {
-  margin: 0;
-  padding-left: 2.2rem;
-}
-
-a {
-  color: inherit;
-}
-
-.hint {
-  margin-top: 40px;
-  font-size: 0.9rem;
-  color: #555;
-}
-
-@media (max-width: 600px) {
-  h1 { font-size: 2.2rem; }
-  h2 { font-size: 1.5rem; }
-  p, li { font-size: 1rem; }
+  max-width: 40rem;
+  padding: 2rem;
 }
