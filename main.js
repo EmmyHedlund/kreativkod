@@ -1,16 +1,10 @@
-// =========================================================
-// Emmy Hedlund :: main.js
-//
+
 // En enda Pixi-canvas ligger bakom sidan och ritar två saker:
 //   1. ett fält av prickar som musen puffar bort och som klick skapar vågor i
 //   2. en generativ bild i varje ruta i rutnätet
-//
 // Ordning i filen:
 //   start -> färger -> input -> prickfält -> motiv -> animationsloop
-// =========================================================
 
-
-// ---------- Start ----------
 
 const app = new PIXI.Application();
 await app.init({
@@ -56,7 +50,7 @@ window.addEventListener("keydown", () => {
 });
 
 
-// ---------- Input ----------
+// ---------- Input 
 
 const pointer = { x: -9999, y: -9999 };   // börjar långt utanför skärmen
 const ripples = [];                        // varje klick lägger till en våg: { x, y, born }
