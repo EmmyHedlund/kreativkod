@@ -1,4 +1,115 @@
 <!doctype html>
 <html lang="en">
-    <head><meta charset="utf-8">
-        <meta name="viewport" content="width=device-width,initial-scale=1"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet"><link rel="stylesheet" href="style.css"><title>Emmy Hedlund — Creative Coding</title><meta name="description" content="Emmy Hedlund, IT, Media and Design student exploring creative coding and interactive experiences."></head><body><header class="nav"><a class="wordmark" href="index.html">emmy hedlund <span>✳</span></a><nav><a class="active" href="index.html">home</a><a href="project.html">project</a><a href="#about">about</a></nav></header><main><section class="home-hero"><div class="tiny-stars" aria-hidden="true">✧ &nbsp; · &nbsp; ✦</div><p class="kicker">A LITTLE CORNER OF MY CREATIVE WORLD</p><h1>Hello, I'm <em>Emmy.</em></h1><p class="lead">I'm Emmy Hedlund, based in Stockholm and studying IT, Media and Design at Södertörn University. I explore creative coding, interaction and generative visuals.</p><a class="pill-link" href="#work">Explore my work <span aria-hidden="true">↗</span></a><span class="hero-ornament" aria-hidden="true">✳</span></section><section class="work-section" id="work"><div class="section-title"><div><p class="kicker">SELECTED WORK · 2026</p><h2>My <em>project.</em></h2></div><p>One project, a little bit of magic.</p></div><a class="project-card" href="project.html" aria-label="View Forest Fairy Rave project"><div class="project-image"><img src="assets/skog.png" alt="Magical forest illuminated with soft pink and violet light"><span class="project-overlay">View project <span aria-hidden="true">↗</span></span></div><div class="project-info"><div><span class="kicker">CREATIVE PROGRAMMING / INTERACTIVE ART</span><h3>Forest Fairy Rave <span aria-hidden="true">✧</span></h3><p>An enchanted forest where movement becomes light, colour and sound.</p></div><span class="round-arrow" aria-hidden="true">↗</span></div></a></section><section class="about-section" id="about"><div><p class="kicker">A LITTLE ABOUT ME</p><h2>Curious about <em>creating.</em></h2></div><p>I'm interested in the meeting point between technology and visual expression — especially how code can create playful, interactive experiences. This website is a place to share what I make.</p></section></main><footer><span>© 2026 Emmy Hedlund</span><span>Made with curiosity & a little magic ✧</span><a href="#top" onclick="window.scrollTo({top:0,behavior:'smooth'});return false">Back to top ↑</a></footer></body></html>
+
+<head>
+  <!-- Grundinställningar -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Emmy Hedlund — Creative Coding</title>
+  <meta name="description" content="Emmy Hedlund, IT, Media and Design student exploring creative coding and interactive experiences.">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Egen CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- ========== NAVIGATION ========== -->
+  <header class="nav">
+    <a class="wordmark" href="index.html">emmy hedlund <span>✳</span></a>
+
+    <nav>
+      <a class="active" href="index.html">home</a>
+      <a href="project.html">project</a>
+      <a href="#about">about</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- ========== HERO (startsidans intro) ========== -->
+    <section class="home-hero">
+      <!-- Dekorativa stjärnor -->
+      <div class="tiny-stars" aria-hidden="true">✧ &nbsp; · &nbsp; ✦</div>
+
+      <p class="kicker">A LITTLE CORNER OF MY CREATIVE WORLD</p>
+      <h1>Hello, I'm <em>Emmy.</em></h1>
+
+      <p class="lead">
+        I'm Emmy Hedlund, based in Stockholm and studying IT, Media and Design
+        at Södertörn University. I explore creative coding, interaction and
+        generative visuals.
+      </p>
+
+      <!-- Länk som scrollar ner till projektet -->
+      <a class="pill-link" href="#work">Explore my work <span aria-hidden="true">↗</span></a>
+
+      <span class="hero-ornament" aria-hidden="true">✳</span>
+    </section>
+
+    <!-- ========== PROJEKT ========== -->
+    <section class="work-section" id="work">
+
+      <!-- Rubrik för sektionen -->
+      <div class="section-title">
+        <div>
+          <p class="kicker">SELECTED WORK · 2026</p>
+          <h2>My <em>project.</em></h2>
+        </div>
+        <p>One project, a little bit of magic.</p>
+      </div>
+
+      <!-- Projektkort (hela kortet är en länk) -->
+      <a class="project-card" href="project.html" aria-label="View Forest Fairy Rave project">
+
+        <!-- Bild med text som visas vid hover -->
+        <div class="project-image">
+          <img src="assets/skog.png" alt="Magical forest illuminated with soft pink and violet light">
+          <span class="project-overlay">View project <span aria-hidden="true">↗</span></span>
+        </div>
+
+        <!-- Titel och beskrivning -->
+        <div class="project-info">
+          <div>
+            <span class="kicker">CREATIVE PROGRAMMING / INTERACTIVE ART</span>
+            <h3>Forest Fairy Rave <span aria-hidden="true">✧</span></h3>
+            <p>An enchanted forest where movement becomes light, colour and sound.</p>
+          </div>
+          <span class="round-arrow" aria-hidden="true">↗</span>
+        </div>
+
+      </a>
+    </section>
+
+    <!-- ========== OM MIG ========== -->
+    <section class="about-section" id="about">
+      <div>
+        <p class="kicker">A LITTLE ABOUT ME</p>
+        <h2>Curious about <em>creating.</em></h2>
+      </div>
+
+      <p>
+        I'm interested in the meeting point between technology and visual
+        expression — especially how code can create playful, interactive
+        experiences. This website is a place to share what I make.
+      </p>
+    </section>
+
+  </main>
+
+  <!-- ========== FOOTER ========== -->
+  <footer>
+    <span>© 2026 Emmy Hedlund</span>
+    <span>Made with curiosity &amp; a little magic ✧</span>
+
+    <!-- Scrollar mjukt till toppen av sidan -->
+    <a href="#top" onclick="window.scrollTo({top:0,behavior:'smooth'});return false">Back to top ↑</a>
+  </footer>
+
+</body>
+</html>
