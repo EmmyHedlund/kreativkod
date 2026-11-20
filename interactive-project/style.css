@@ -1,0 +1,203 @@
+/* Anger vilken bild som används som bakgrund i skogen. */
+:root {
+  --bild: url("skog.png");
+}
+
+/* Tar bort marginaler och ser till att sidan täcker hela skärmen utan scrollning. */
+html, body {
+  margin: 0;
+  height: 100%;
+  background: #0b0f0c;
+  overflow: hidden;
+}
+
+/* chatGPT skapade alla olika filtren så att bakgrundsbilden ser levande ut */
+
+/* Scenen täcker hela skärmen och innehåller skogens olika lager. */
+.scen {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0;
+}
+
+/* Placerar lagren ovanpå varandra. De är lite större än skärmen
+   så att kanterna inte syns när bilden andas och vindfiltret förskjuter bilden. */
+.lager {
+  position: absolute;
+  inset: -4%;
+}
+
+/* Bakgrundsbilden och bladlagret förstoras långsamt för att ge skogen lite liv. */
+.bild, .blad {
+  background: var(--bild) center/cover no-repeat;
+  animation: andas-bild 40s ease-in-out infinite alternate;
+}
+
+@keyframes andas-bild {
+  from { scale: 1; }
+  to { scale: 1.04; }
+}
+
+/* Bladlagret använder vindfiltret från HTML-koden.
+   Maskerna gör att rörelsen främst syns i träden och löven runt bildens kanter. */
+.blad {
+  filter: url(#vind);
+
+  -webkit-mask-image:
+    radial-gradient(ellipse 36% 38% at 18% 8%, #000 35%, transparent 100%),
+    radial-gradient(ellipse 30% 42% at 86% 12%, #000 35%, transparent 100%),
+    radial-gradient(ellipse 40% 22% at 50% 0%, #000 25%, transparent 100%),
+    radial-gradient(ellipse 28% 24% at 20% 88%, #000 30%, transparent 100%),
+    radial-gradient(ellipse 28% 22% at 84% 90%, #000 30%, transparent 100%);
+
+  mask-image:
+    radial-gradient(ellipse 36% 38% at 18% 8%, #000 35%, transparent 100%),
+    radial-gradient(ellipse 30% 42% at 86% 12%, #000 35%, transparent 100%),
+    radial-gradient(ellipse 40% 22% at 50% 0%, #000 25%, transparent 100%),
+    radial-gradient(ellipse 28% 24% at 20% 88%, #000 30%, transparent 100%),
+    radial-gradient(ellipse 28% 22% at 84% 90%, #000 30%, transparent 100%);
+}
+
+/* Dimman blandas med bakgrunden för att skapa ett mjukt ljus. */
+.dimma {
+  mix-blend-mode: screen;
+  opacity: .55;
+  pointer-events: none;
+}
+
+/* Varje dimmoln är en suddig cirkel där färgen tonas ut mot kanterna. */
+.dimma i {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  background: radial-gradient(
+    closest-side,
+    rgba(200,150,220,.4),
+    rgba(200,150,220,0)
+  );
+  will-change: transform;
+}
+
+/* Dimmolnen har olika storlek, position och hastighet så att rörelsen känns naturligare. */
+.dimma i:nth-child(1) {
+  width: 60%;
+  height: 40%;
+  left: -10%;
+  top: 45%;
+  animation: drift1 55s ease-in-out infinite alternate;
+}
+
+.dimma i:nth-child(2) {
+  width: 55%;
+  height: 35%;
+  left: 40%;
+  top: 50%;
+  animation: drift2 70s ease-in-out infinite alternate;
+}
+
+.dimma i:nth-child(3) {
+  width: 50%;
+  height: 30%;
+  left: 15%;
+  top: 62%;
+  animation: drift3 62s ease-in-out infinite alternate;
+  background: radial-gradient(
+    closest-side,
+    rgba(150,200,170,.28),
+    rgba(150,200,170,0)
+  );
+}
+
+/* Styr hur dimmolnen långsamt driver fram och tillbaka. */
+@keyframes drift1 {
+  from { transform: translate(-6%,0); }
+  to { transform: translate(14%,-4%); }
+}
+
+@keyframes drift2 {
+  from { transform: translate(8%,-3%); }
+  to { transform: translate(-16%,3%); }
+}
+
+@keyframes drift3 {
+  from { transform: translate(-10%,2%); }
+  to { transform: translate(12%,-2%); }
+}
+
+/* Skapar mjuka ljusstrålar med rosa, gula och lila toner. */
+.strålar {
+  mix-blend-mode: screen;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      ellipse 35% 55% at 55% 18%,
+      rgba(255,150,230,.3),
+      transparent 70%
+    ),
+    linear-gradient(
+      115deg,
+      transparent 30%,
+      rgba(255,230,180,.1) 42%,
+      rgba(190,160,255,.12) 48%,
+      transparent 60%
+    );
+  animation: puls 9s ease-in-out infinite alternate;
+}
+
+/* Ljusstrålarna rör sig lite åt sidan och ändrar långsamt ljusstyrka. */
+@keyframes puls {
+  from {
+    opacity: .35;
+    transform: translateX(-1.5%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(1.5%);
+  }
+}
+
+/* Canvasen för eldflugorna täcker hela skärmen utan att störa muspekaren. */
+#eldflugor {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* Mörkar ner kanterna så att fokus hamnar mer på mitten av skogen. */
+.vinjett {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 55%,
+    rgba(0,0,0,.35) 100%
+  );
+}
+
+/* Stänger av animationerna om användaren har valt minskad rörelse. */
+@media (prefers-reduced-motion: reduce) {
+  .bild, .blad, .dimma i, .strålar {
+    animation: none !important;
+  }
+
+  .blad {
+    filter: none;
+  }
+}
+
+/* Placerar det interaktiva konstverket framför skogsbakgrunden. */
+main {
+  position: fixed;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Ser till att p5.js-canvasen visas utan extra mellanrum. */
+main canvas {
+  display: block;
+}
