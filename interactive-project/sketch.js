@@ -42,7 +42,9 @@ function smth(){drawingContext.imageSmoothingEnabled=!0;drawingContext.imageSmoo
 
 // Här startas kameran och alla grafiklager, partiklar och AI-modellen förbereds.
 function setup(){
- createCanvas(windowWidth,windowHeight);pixelDensity(1);smth();
+ const canvas = createCanvas(windowWidth,windowHeight);
+ canvas.parent(document.querySelector("main"));
+ pixelDensity(1);smth();
 
  video=createCapture(VIDEO);video.size(CW,CH);video.hide();
 
